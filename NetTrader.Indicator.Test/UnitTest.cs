@@ -5,6 +5,7 @@ using System.IO;
 using LumenWorks.Framework.IO.Csv;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NetTrader.TradingIndicator;
+using NetTrader.TradingIndicator.Models;
 
 namespace NetTrader.Indicator.Test
 {
@@ -34,7 +35,7 @@ namespace NetTrader.Indicator.Test
         {
             OBV obv = new OBV();
             obv.Load(OhlcList);
-            SingleDoubleSerie serie = obv.Calculate();
+            var serie = obv.Calculate();
 
             Assert.IsNotNull(serie);
             Assert.IsTrue(serie.Values.Count > 0);

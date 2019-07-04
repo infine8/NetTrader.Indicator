@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using NetTrader.TradingIndicator.Models;
 
 namespace NetTrader.TradingIndicator
 {
     /// <summary>
     /// On Balance Volume (OBV)
     /// </summary>
-    public class OBV : IndicatorCalculatorBase<SingleDoubleSerie>
+    public class OBV : IndicatorCalculatorBase<DateDoubleSerie>
     {
         protected override List<Ohlc> OhlcList { get; set; }
 
@@ -23,28 +21,32 @@ namespace NetTrader.TradingIndicator
         /// </summary>
         /// <see cref="http://ta.mql4.com/indicators/volumes/on_balance_volume"/>
         /// <returns></returns>
-        public override SingleDoubleSerie Calculate()
+        public override DateDoubleSerie Calculate()
         {
-            SingleDoubleSerie obvSerie = new SingleDoubleSerie();
-            obvSerie.Values.Add(OhlcList[0].Volume);
+            var obvSerie = new DateDoubleSerie();
+            obvSerie.Values.Add(OhlcList[0].Date, OhlcList[0].Volume);
 
-            for (int i = 1; i < OhlcList.Count; i++)
-            {   
-                double value = 0.0;
-                if (OhlcList[i].Close > OhlcList[i - 1].Close)
+            for (var i = 1; i < OhlcList.Count; i++)
+            {
+                var item = OhlcList[i];
+
+                var values = obvSerie.Values.Values.Select(x => x ?? 0).ToList();
+
+                var value = 0.0;
+                if (item.Close > OhlcList[i - 1].Close)
                 {
-                    value = obvSerie.Values[i - 1].Value + OhlcList[i].Volume;
+                    value = values[i - 1] + OhlcList[i].Volume;
                 }
-                else if (OhlcList[i].Close < OhlcList[i - 1].Close)
+                else if (item.Close < OhlcList[i - 1].Close)
                 {
-                    value = obvSerie.Values[i - 1].Value - OhlcList[i].Volume;
+                    value = values[i - 1] - OhlcList[i].Volume;
                 }
-                else if (OhlcList[i].Close == OhlcList[i - 1].Close)
+                else if (item.Close == OhlcList[i - 1].Close)
                 {
-                    value = obvSerie.Values[i - 1].Value;
+                    value = values[i - 1];
                 }
 
-                obvSerie.Values.Add(value);
+                obvSerie.Values.Add(item.Date, value);
             }
 
             return obvSerie;
