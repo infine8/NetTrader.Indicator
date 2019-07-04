@@ -1,18 +1,28 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
-using NetTrader.Indicator;
+using LumenWorks.Framework.IO.Csv;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NetTrader.TradingIndicator;
 
 namespace NetTrader.Indicator.Test
 {
     [TestClass]
     public class UnitTest
     {
+        public List<Ohlc> OhlcList = new List<Ohlc>();
+
+        public UnitTest()
+        {
+            Load(Directory.GetCurrentDirectory() + "\\table.csv");
+        }
+
         [TestMethod]
         public void ADL()
         {
             ADL adl = new ADL();
-            adl.Load(Directory.GetCurrentDirectory() + "\\table.csv");
+            adl.Load(OhlcList);
             SingleDoubleSerie serie = adl.Calculate();
 
             Assert.IsNotNull(serie);
@@ -23,7 +33,7 @@ namespace NetTrader.Indicator.Test
         public void OBV()
         {
             OBV obv = new OBV();
-            obv.Load(Directory.GetCurrentDirectory() + "\\table.csv");
+            obv.Load(OhlcList);
             SingleDoubleSerie serie = obv.Calculate();
 
             Assert.IsNotNull(serie);
@@ -34,7 +44,7 @@ namespace NetTrader.Indicator.Test
         public void SMA()
         {
             SMA sma = new SMA(5);
-            sma.Load(Directory.GetCurrentDirectory() + "\\table.csv");
+            sma.Load(OhlcList);
             SingleDoubleSerie serie = sma.Calculate();
 
             Assert.IsNotNull(serie);
@@ -45,7 +55,7 @@ namespace NetTrader.Indicator.Test
         public void EMA()
         {
             EMA ema = new EMA(10, true);
-            ema.Load(Directory.GetCurrentDirectory() + "\\table.csv");
+            ema.Load(OhlcList);
             SingleDoubleSerie serie = ema.Calculate();
 
             Assert.IsNotNull(serie);
@@ -56,7 +66,7 @@ namespace NetTrader.Indicator.Test
         public void ROC()
         {
             ROC roc = new ROC(12);
-            roc.Load(Directory.GetCurrentDirectory() + "\\table.csv");
+            roc.Load(OhlcList);
             SingleDoubleSerie serie = roc.Calculate();
 
             Assert.IsNotNull(serie);
@@ -67,7 +77,7 @@ namespace NetTrader.Indicator.Test
         public void RSI()
         {
             RSI rsi = new RSI(14);
-            rsi.Load(Directory.GetCurrentDirectory() + "\\table.csv");
+            rsi.Load(OhlcList);
             RSISerie serie = rsi.Calculate();
 
             Assert.IsNotNull(serie);
@@ -79,7 +89,7 @@ namespace NetTrader.Indicator.Test
         public void WMA()
         {
             WMA wma = new WMA(10);
-            wma.Load(Directory.GetCurrentDirectory() + "\\table.csv");
+            wma.Load(OhlcList);
             SingleDoubleSerie serie = wma.Calculate();
 
             Assert.IsNotNull(serie);
@@ -90,7 +100,7 @@ namespace NetTrader.Indicator.Test
         public void DEMA()
         {
             DEMA dema = new DEMA(5);
-            dema.Load(Directory.GetCurrentDirectory() + "\\table.csv");
+            dema.Load(OhlcList);
             SingleDoubleSerie serie = dema.Calculate();
 
             Assert.IsNotNull(serie);
@@ -102,7 +112,7 @@ namespace NetTrader.Indicator.Test
         {
             //MACD macd = new MACD();
             MACD macd = new MACD(true); 
-            macd.Load(Directory.GetCurrentDirectory() + "\\table.csv");
+            macd.Load(OhlcList);
             MACDSerie serie = macd.Calculate();
 
             Assert.IsNotNull(serie);
@@ -115,7 +125,7 @@ namespace NetTrader.Indicator.Test
         public void Aroon()
         {
             Aroon aroon = new Aroon(5);
-            aroon.Load(Directory.GetCurrentDirectory() + "\\table.csv");
+            aroon.Load(OhlcList);
             AroonSerie serie = aroon.Calculate();
 
             Assert.IsNotNull(serie);
@@ -127,7 +137,7 @@ namespace NetTrader.Indicator.Test
         public void ATR()
         {
             ATR atr = new ATR();
-            atr.Load(Directory.GetCurrentDirectory() + "\\table.csv");
+            atr.Load(OhlcList);
             ATRSerie serie = atr.Calculate();
 
             Assert.IsNotNull(serie);
@@ -141,7 +151,7 @@ namespace NetTrader.Indicator.Test
         public void BollingerBand()
         {
             BollingerBand bollingerBand = new BollingerBand();
-            bollingerBand.Load(Directory.GetCurrentDirectory() + "\\table.csv");
+            bollingerBand.Load(OhlcList);
             BollingerBandSerie serie = bollingerBand.Calculate();
 
             Assert.IsNotNull(serie);
@@ -156,7 +166,7 @@ namespace NetTrader.Indicator.Test
         public void CCI()
         {
             CCI cci = new CCI();
-            cci.Load(Directory.GetCurrentDirectory() + "\\table.csv");
+            cci.Load(OhlcList);
             SingleDoubleSerie serie = cci.Calculate();
 
             Assert.IsNotNull(serie);
@@ -167,7 +177,7 @@ namespace NetTrader.Indicator.Test
         public void CMF()
         {
             CMF cmf = new CMF();
-            cmf.Load(Directory.GetCurrentDirectory() + "\\table.csv");
+            cmf.Load(OhlcList);
             SingleDoubleSerie serie = cmf.Calculate();
 
             Assert.IsNotNull(serie);
@@ -178,7 +188,7 @@ namespace NetTrader.Indicator.Test
         public void CMO()
         {
             CMO cmo = new CMO();
-            cmo.Load(Directory.GetCurrentDirectory() + "\\table.csv");
+            cmo.Load(OhlcList);
             IIndicatorSerie serie = cmo.Calculate();
             Assert.IsNotNull(serie);
         }
@@ -187,7 +197,7 @@ namespace NetTrader.Indicator.Test
         public void DPO()
         {
             DPO dpo = new DPO();
-            dpo.Load(Directory.GetCurrentDirectory() + "\\table.csv");
+            dpo.Load(OhlcList);
             SingleDoubleSerie serie = dpo.Calculate();
 
             Assert.IsNotNull(serie);
@@ -198,7 +208,7 @@ namespace NetTrader.Indicator.Test
         public void Envelope()
         {
             Envelope envelope = new Envelope();
-            envelope.Load(Directory.GetCurrentDirectory() + "\\table.csv");
+            envelope.Load(OhlcList);
             EnvelopeSerie serie = envelope.Calculate();
 
             Assert.IsNotNull(serie);
@@ -210,7 +220,7 @@ namespace NetTrader.Indicator.Test
         public void Momentum()
         {
             Momentum momentum = new Momentum();
-            momentum.Load(Directory.GetCurrentDirectory() + "\\table.csv");
+            momentum.Load(OhlcList);
             SingleDoubleSerie serie = momentum.Calculate();
 
             Assert.IsNotNull(serie);
@@ -221,7 +231,7 @@ namespace NetTrader.Indicator.Test
         public void Volume()
         {
             Volume volume = new Volume();
-            volume.Load(Directory.GetCurrentDirectory() + "\\table.csv");
+            volume.Load(OhlcList);
             SingleDoubleSerie serie = volume.Calculate();
 
             Assert.IsNotNull(serie);
@@ -232,7 +242,7 @@ namespace NetTrader.Indicator.Test
         public void TRIX()
         {
             TRIX trix = new TRIX();
-            trix.Load(Directory.GetCurrentDirectory() + "\\table.csv");
+            trix.Load(OhlcList);
             SingleDoubleSerie serie = trix.Calculate();
 
             Assert.IsNotNull(serie);
@@ -243,7 +253,7 @@ namespace NetTrader.Indicator.Test
         public void WPR()
         {
             WPR wpr = new WPR();
-            wpr.Load(Directory.GetCurrentDirectory() + "\\table.csv");
+            wpr.Load(OhlcList);
             SingleDoubleSerie serie = wpr.Calculate();
 
             Assert.IsNotNull(serie);
@@ -254,7 +264,7 @@ namespace NetTrader.Indicator.Test
         public void ZLEMA()
         {
             ZLEMA zlema = new ZLEMA();
-            zlema.Load(Directory.GetCurrentDirectory() + "\\table.csv");
+            zlema.Load(OhlcList);
             SingleDoubleSerie serie = zlema.Calculate();
 
             Assert.IsNotNull(serie);
@@ -265,7 +275,7 @@ namespace NetTrader.Indicator.Test
         public void ADX()
         {
             ADX adx = new ADX();
-            adx.Load(Directory.GetCurrentDirectory() + "\\table.csv");
+            adx.Load(OhlcList);
             ADXSerie serie = adx.Calculate();
 
             Assert.IsNotNull(serie);
@@ -280,7 +290,7 @@ namespace NetTrader.Indicator.Test
         public void SAR()
         {
             SAR sar = new SAR();
-            sar.Load(Directory.GetCurrentDirectory() + "\\table.csv");
+            sar.Load(OhlcList);
             SingleDoubleSerie serie = sar.Calculate();
 
             Assert.IsNotNull(serie);
@@ -291,7 +301,7 @@ namespace NetTrader.Indicator.Test
         public void PVT()
         {
             PVT pvt = new PVT();
-            pvt.Load(Directory.GetCurrentDirectory() + "\\table.csv");
+            pvt.Load(OhlcList);
             SingleDoubleSerie serie = pvt.Calculate();
 
             Assert.IsNotNull(serie);
@@ -302,7 +312,7 @@ namespace NetTrader.Indicator.Test
         public void VROC()
         {
             VROC vroc = new VROC(25);
-            vroc.Load(Directory.GetCurrentDirectory() + "\\table.csv");
+            vroc.Load(OhlcList);
             SingleDoubleSerie serie = vroc.Calculate();
 
             Assert.IsNotNull(serie);
@@ -314,7 +324,7 @@ namespace NetTrader.Indicator.Test
         {
             // Not sure...
             Ichimoku ichimoku = new Ichimoku();
-            ichimoku.Load(Directory.GetCurrentDirectory() + "\\table.csv");
+            ichimoku.Load(OhlcList);
             IchimokuSerie serie = ichimoku.Calculate();
 
             Assert.IsNotNull(serie);
@@ -324,6 +334,52 @@ namespace NetTrader.Indicator.Test
             Assert.IsTrue(serie.LeadingSpanA.Count > 0);
             Assert.IsTrue(serie.LeadingSpanB.Count > 0);
         }
-        
+
+
+        public virtual void Load(string path)
+        {
+            using (CsvReader csv = new CsvReader(new StreamReader(path), true))
+            {
+                int fieldCount = csv.FieldCount;
+                string[] headers = csv.GetFieldHeaders();
+                OhlcList = new List<Ohlc>();
+                while (csv.ReadNextRecord())
+                {
+                    Ohlc ohlc = new Ohlc();
+                    for (int i = 0; i < fieldCount; i++)
+                    {
+                        switch (headers[i])
+                        {
+                            case "Date":
+                                ohlc.Date = new DateTime(Int32.Parse(csv[i].Substring(0, 4)), Int32.Parse(csv[i].Substring(5, 2)), Int32.Parse(csv[i].Substring(8, 2)));
+                                break;
+                            case "Open":
+                                ohlc.Open = double.Parse(csv[i], CultureInfo.InvariantCulture);
+                                break;
+                            case "High":
+                                ohlc.High = double.Parse(csv[i], CultureInfo.InvariantCulture);
+                                break;
+                            case "Low":
+                                ohlc.Low = double.Parse(csv[i], CultureInfo.InvariantCulture);
+                                break;
+                            case "Close":
+                                ohlc.Close = double.Parse(csv[i], CultureInfo.InvariantCulture);
+                                break;
+                            case "Volume":
+                                ohlc.Volume = int.Parse(csv[i]);
+                                break;
+                            case "Adj Close":
+                                ohlc.AdjClose = double.Parse(csv[i], CultureInfo.InvariantCulture);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+
+                    OhlcList.Add(ohlc);
+                }
+            }
+        }
+
     }
 }

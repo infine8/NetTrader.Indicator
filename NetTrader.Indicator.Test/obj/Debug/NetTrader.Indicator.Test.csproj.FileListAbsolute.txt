@@ -1,0 +1,12 @@
+C:\_PROJECTS\NetTrader.Indicator\NetTrader.Indicator.Test\bin\Debug\table.csv
+C:\_PROJECTS\NetTrader.Indicator\NetTrader.Indicator.Test\bin\Debug\NetTrader.Indicator.Test.dll
+C:\_PROJECTS\NetTrader.Indicator\NetTrader.Indicator.Test\bin\Debug\NetTrader.Indicator.Test.pdb
+C:\_PROJECTS\NetTrader.Indicator\NetTrader.Indicator.Test\bin\Debug\LumenWorks.Framework.IO.dll
+C:\_PROJECTS\NetTrader.Indicator\NetTrader.Indicator.Test\bin\Debug\NetTrader.TradingIndicator.dll
+C:\_PROJECTS\NetTrader.Indicator\NetTrader.Indicator.Test\bin\Debug\NetTrader.TradingIndicator.pdb
+C:\_PROJECTS\NetTrader.Indicator\NetTrader.Indicator.Test\bin\Debug\LumenWorks.Framework.IO.xml
+C:\_PROJECTS\NetTrader.Indicator\NetTrader.Indicator.Test\obj\Debug\NetTrader.Indicator.Test.csprojAssemblyReference.cache
+C:\_PROJECTS\NetTrader.Indicator\NetTrader.Indicator.Test\obj\Debug\NetTrader.Indicator.Test.csproj.CoreCompileInputs.cache
+C:\_PROJECTS\NetTrader.Indicator\NetTrader.Indicator.Test\obj\Debug\NetTrader.Indicator.Test.csproj.CopyComplete
+C:\_PROJECTS\NetTrader.Indicator\NetTrader.Indicator.Test\obj\Debug\NetTrader.Indicator.Test.dll
+C:\_PROJECTS\NetTrader.Indicator\NetTrader.Indicator.Test\obj\Debug\NetTrader.Indicator.Test.pdb
