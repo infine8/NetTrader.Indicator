@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using NetTrader.Indicator.Models;
 
-namespace NetTrader.TradingIndicator
+namespace NetTrader.Indicator
 {
     public abstract class IndicatorCalculatorBase<T>
     {

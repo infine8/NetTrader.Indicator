@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NetTrader.TradingIndicator.Models;
+using NetTrader.Indicator.Models;
 
-namespace NetTrader.TradingIndicator
+namespace NetTrader.Indicator
 {
     public class SingleIntSerie : IIndicatorSerie
     {

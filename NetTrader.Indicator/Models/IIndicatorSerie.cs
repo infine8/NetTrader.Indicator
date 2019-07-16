@@ -1,4 +1,4 @@
-﻿namespace NetTrader.TradingIndicator.Models
+﻿namespace NetTrader.Indicator.Models
 {
     public interface IIndicatorSerie
     {

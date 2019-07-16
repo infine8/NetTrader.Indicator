@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace NetTrader.TradingIndicator.Models
+namespace NetTrader.Indicator.Models
 {
     public class SingleDoubleSerie : IIndicatorSerie
     {

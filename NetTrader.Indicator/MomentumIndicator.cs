@@ -1,24 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NetTrader.TradingIndicator.Models;
+﻿using System.Collections.Generic;
+using NetTrader.Indicator.Models;
 
-namespace NetTrader.TradingIndicator
+namespace NetTrader.Indicator
 {
-    public class Momentum : IndicatorCalculatorBase<SingleDoubleSerie>
+    public class MomentumIndicator : IndicatorCalculatorBase<DateDoubleSerie>
     {
         protected override List<Ohlc> OhlcList { get; set; }
 
-        public override SingleDoubleSerie Calculate()
+        public override DateDoubleSerie Calculate()
         {
-            SingleDoubleSerie momentumSerie = new SingleDoubleSerie();
-            momentumSerie.Values.Add(null);
+            var momentumSerie = new DateDoubleSerie();
+            momentumSerie.Values.Add(default, null);
 
             for (int i = 1; i < OhlcList.Count; i++)
             {
-                momentumSerie.Values.Add(OhlcList[i].Close - OhlcList[i - 1].Close);    
+                momentumSerie.Values.Add(OhlcList[i].Date, OhlcList[i].Close - OhlcList[i - 1].Close);    
             }
 
             return momentumSerie;

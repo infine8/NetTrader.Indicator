@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using NetTrader.TradingIndicator.Models;
+using NetTrader.Indicator.Models;
 
-namespace NetTrader.TradingIndicator
+namespace NetTrader.Indicator
 {
     /// <summary>
     /// On Balance Volume (OBV)
     /// </summary>
-    public class OBV : IndicatorCalculatorBase<DateDoubleSerie>
+    public class OBVIndicator : IndicatorCalculatorBase<DateDoubleSerie>
     {
         protected override List<Ohlc> OhlcList { get; set; }
 

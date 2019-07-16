@@ -1,27 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NetTrader.TradingIndicator.Models;
+﻿using System.Collections.Generic;
+using NetTrader.Indicator.Models;
 
-namespace NetTrader.TradingIndicator
+namespace NetTrader.Indicator
 {
     /// <summary>
     /// Exponential Moving Average
     /// </summary>
-    public class EMA : IndicatorCalculatorBase<SingleDoubleSerie>
+    public class EMAIndicator : IndicatorCalculatorBase<DateDoubleSerie>
     {
         protected override List<Ohlc> OhlcList { get; set; }
         protected int Period = 10;
         protected bool Wilder = false;
 
-        public EMA()
+        public EMAIndicator()
         { 
         
         }
 
-        public EMA(int period, bool wilder)
+        public EMAIndicator(int period, bool wilder)
         {
             this.Period = period;
             this.Wilder = wilder;
@@ -35,7 +31,7 @@ namespace NetTrader.TradingIndicator
         /// </summary>
         /// <see cref="http://stockcharts.com/school/doku.php?id=chart_school:technical_indicators:moving_averages"/>
         /// <returns></returns>
-        public override SingleDoubleSerie Calculate()
+        public override DateDoubleSerie Calculate()
         {
             // karşılaştırma için tutarlar ezilebilir. Bağlantı: http://stockcharts.com/school/doku.php?id=chart_school:technical_indicators:moving_averages
             //OhlcList[0].Close = 22.27;
@@ -54,20 +50,23 @@ namespace NetTrader.TradingIndicator
             //OhlcList[13].Close = 22.61;
             //OhlcList[14].Close = 23.36;
 
-            SingleDoubleSerie emaSerie = new SingleDoubleSerie();
+            var emaSerie = new DateDoubleSerie();
             var multiplier = !this.Wilder ? (2.0 / (double)(Period + 1)) : (1.0 / (double)Period);
 
             for (int i = 0; i < OhlcList.Count; i++)
             {
+                var item = OhlcList[i];
+
                 if (i >= Period - 1)
-                {       
+                {
+                    var prevItem = OhlcList[i - 1];
                     var close = OhlcList[i].Close;
                     var emaPrev = 0.0;
-                    if (emaSerie.Values[i - 1].HasValue)
+                    if (emaSerie.Values[prevItem.Date].HasValue)
                     {
-                        emaPrev = emaSerie.Values[i - 1].Value;
+                        emaPrev = emaSerie.Values[prevItem.Date].Value;
                         var ema = (close - emaPrev) * multiplier + emaPrev;//(close * multiplier) + (emaPrev * (1 - multiplier));
-                        emaSerie.Values.Add(ema);
+                        emaSerie.Values.Add(item.Date, ema);
                     }
                     else
                     {
@@ -77,12 +76,12 @@ namespace NetTrader.TradingIndicator
                             sum += OhlcList[j].Close;
                         }
                         var ema = sum / Period;
-                        emaSerie.Values.Add(ema);
+                        emaSerie.Values.Add(item.Date, ema);
                     }
                 }
                 else
                 {
-                    emaSerie.Values.Add(null);
+                    emaSerie.Values.Add(item.Date, null);
                 }
             }
 

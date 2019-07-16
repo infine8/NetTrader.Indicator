@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="ADL.cs" />
+    <Compile Remove="ADX.cs" />
+    <Compile Remove="ADXSerie.cs" />
+    <Compile Remove="Aroon.cs" />
+    <Compile Remove="AroonSerie.cs" />
+    <Compile Remove="BollingerBand.cs" />
+    <Compile Remove="BollingerBandSerie.cs" />
+    <Compile Remove="CCI.cs" />
+    <Compile Remove="CMF.cs" />
+    <Compile Remove="CMO.cs" />
+    <Compile Remove="DEMA.cs" />
+    <Compile Remove="DPO.cs" />
+    <Compile Remove="Envelope.cs" />
+    <Compile Remove="EnvelopeSerie.cs" />
+    <Compile Remove="Ichimoku.cs" />
+    <Compile Remove="IchimokuSerie.cs" />
+    <Compile Remove="MACD.cs" />
+    <Compile Remove="MACDSerie.cs" />
+    <Compile Remove="PVT.cs" />
+    <Compile Remove="ROC.cs" />
+    <Compile Remove="RSI.cs" />
+    <Compile Remove="RSISerie.cs" />
+    <Compile Remove="SAR.cs" />
+    <Compile Remove="SMA.cs" />
+    <Compile Remove="Statistics.cs" />
+    <Compile Remove="TRIX.cs" />
+    <Compile Remove="Volume.cs" />
+    <Compile Remove="VROC.cs" />
+    <Compile Remove="WMA.cs" />
+    <Compile Remove="WPR.cs" />
+    <Compile Remove="ZLEMA.cs" />
+  </ItemGroup>
+</Project>
